@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bí mật nhỏ❤️</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:sans-serif;
+}
+
+body{
+background:linear-gradient(120deg,#fff5f7,#ffd6e7,#ffc2dc,#ffe4ec);
+text-align:center;
+overflow:hidden;
+color:#ff4d6d;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+.container{
+text-align:center;
+}
+
+button{
+padding:15px 35px;
+font-size:18px;
+border:none;
+border-radius:30px;
+margin:10px;
+cursor:pointer;
+}
+
+#yes{
+background:#ff4d6d;
+color:white;
+}
+
+#no{
+background:white;
+color:#ff4d6d;
+}
+
+.message-box{
+background:#ff4d6d;
+color:white;
+padding:40px;
+border-radius:20px;
+width:80%;
+max-width:1000px;
+margin:auto;
+font-size:20px;
+line-height:1.6;
+}
+
+#message::after{
+content:"|";
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+0%{opacity:1}
+50%{opacity:0}
+100%{opacity:1}
+}
+
+#introText{
+display:none;
+font-size:26px;
+margin-top:40px;
+font-weight:bold;
+}
+
+.slideshow{
+display:none;
+}
+
+.slideshow img{
+width:260px;
+border-radius:15px;
+margin-top:25px;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+#finalText{
+display:none;
+font-size:45px;
+margin-top:40px;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="container" id="start">
+
+<h1>Anh bé oiii</h1>
+<br>
+<h1>Em có điều muốn nói với anh nè...</h1>
+<br>
+<button onclick="openQuestion()">Típ iii anhhh</button>
+
+</div>
+
+<div class="container" id="question" style="display:none">
+
+<h1>Anh có biết sắp đến ngày gì khum?🤔</h1>
+
+<button id="yes">Yes</button>
+<button id="no">No</button>
+
+</div>
+
+<div class="container" id="result" style="display:none">
+
+<div class="message-box">
+<p id="message"></p>
+</div>
+
+<p id="introText">
+Mình cùng xem những kỷ niệm đã cùng nhau trải qua nhé❤️
+</p>
+
+<div class="slideshow">
+<img id="slide" src="1.jpg">
+</div>
+
+<p id="finalText">Mãi iuuu anhhh❤️❤️❤️</p>
+
+</div>
+
+<audio id="music">
+<source src="music.mp3">
+</audio>
+
+<script>
+
+/* OPEN */
+
+function openQuestion(){
+document.getElementById("start").style.display="none"
+document.getElementById("question").style.display="block"
+}
+
+/* NO BUTTON */
+
+const noBtn=document.getElementById("no")
+
+noBtn.addEventListener("mouseover",()=>{
+noBtn.style.position="fixed"
+noBtn.style.left=Math.random()*window.innerWidth+"px"
+noBtn.style.top=Math.random()*window.innerHeight+"px"
+})
+
+noBtn.addEventListener("click",()=>{
+alert("Anh tệ lứm😤😤😤")
+})
+
+/* YES */
+
+document.getElementById("yes").onclick=function(){
+
+document.getElementById("question").style.display="none"
+
+document.getElementById("music").play()
+
+heart500()
+
+}
+
+/* TEXT */
+
+const text=`Chúc mừng kỷ niệm 500 ngày của chúng mình❤️.
+Cảm ơn anh vì đã đến bên em và ở lại suốt 500 ngày qua.
+Có thể 500 ngày không quá dài
+nhưng với em đó là rất nhiều kỷ niệm và yêu thương.
+
+Cảm ơn anh vì luôn ở bên em
+dù là lúc em vui hay lúc em không ổn.
+
+Em mong rằng sau 500 ngày này
+chúng ta sẽ còn cùng nhau đi qua
+1000 ngày, 2000 ngày và nhiều hơn thế nữa.
+
+Cảm ơn anh vì đã iu em.
+Em cũm iuu anh nhìu❤️❤️❤️`
+
+let i=0
+
+function typeText(){
+
+if(i<text.length){
+
+document.getElementById("message").innerHTML+=text.charAt(i)
+
+i++
+
+setTimeout(typeText,100)
+
+}else{
+
+setTimeout(showIntro,3000)
+
+}
+
+}
+
+/* SHOW INTRO */
+
+function showIntro(){
+
+document.querySelector(".message-box").style.display="none"
+
+const intro=document.getElementById("introText")
+
+intro.style.display="block"
+
+setTimeout(()=>{
+
+intro.style.display="none"
+
+document.querySelector(".slideshow").style.display="block"
+
+startSlideshow()
+
+},3000)
+
+}
+
+
+
+/* GIỮ NGUYÊN HIỆU ỨNG 500 CỦA BẠN */
+
+function heart500(){
+
+    const hearts=[]
+    
+    const centerX=window.innerWidth/2
+    const centerY=window.innerHeight/2
+    
+    const offsetX=centerX-120
+    const offsetY=centerY-80
+    
+    const points=[
+    
+    [offsetX,offsetY],[offsetX+20,offsetY],[offsetX+40,offsetY],
+    [offsetX,offsetY+20],
+    [offsetX,offsetY+40],[offsetX+20,offsetY+40],[offsetX+40,offsetY+40],
+    [offsetX+40,offsetY+60],
+    [offsetX,offsetY+80],[offsetX+20,offsetY+80],[offsetX+40,offsetY+80],
+    
+    [offsetX+80,offsetY],[offsetX+100,offsetY],[offsetX+120,offsetY],
+    [offsetX+80,offsetY+20],[offsetX+120,offsetY+20],
+    [offsetX+80,offsetY+40],[offsetX+120,offsetY+40],
+    [offsetX+80,offsetY+60],[offsetX+120,offsetY+60],
+    [offsetX+80,offsetY+80],[offsetX+100,offsetY+80],[offsetX+120,offsetY+80],
+    
+    [offsetX+160,offsetY],[offsetX+180,offsetY],[offsetX+200,offsetY],
+    [offsetX+160,offsetY+20],[offsetX+200,offsetY+20],
+    [offsetX+160,offsetY+40],[offsetX+200,offsetY+40],
+    [offsetX+160,offsetY+60],[offsetX+200,offsetY+60],
+    [offsetX+160,offsetY+80],[offsetX+180,offsetY+80],[offsetX+200,offsetY+80]
+    
+    ]
+    
+    points.forEach((p)=>{
+    
+    const heart=document.createElement("div")
+    
+    heart.innerHTML="💗"
+    
+    heart.style.position="fixed"
+    heart.style.fontSize="16px"
+    
+    document.body.appendChild(heart)
+    
+    hearts.push(heart)
+    
+    const corners=[
+    [0,0],
+    [window.innerWidth,0],
+    [0,window.innerHeight],
+    [window.innerWidth,window.innerHeight]
+    ]
+    
+    const start=corners[Math.floor(Math.random()*4)]
+    
+    heart.style.left=start[0]+"px"
+    heart.style.top=start[1]+"px"
+    
+    heart.animate([
+    {transform:`translate(0,0) scale(0.5)`,opacity:0},
+    {transform:`translate(${p[0]-start[0]}px,${p[1]-start[1]}px) scale(1.2)`,opacity:1}
+    ],{
+    duration:2000,
+    easing:"ease-out",
+    fill:"forwards"
+    })
+    
+    })
+    
+    /* giữ số 500 */
+    
+    setTimeout(()=>{
+    
+    /* làm mờ rồi xóa */
+    
+    hearts.forEach(h=>{
+    
+    h.animate([
+    {opacity:1},
+    {opacity:0}
+    ],{duration:800})
+    
+    setTimeout(()=>h.remove(),800)
+    
+    })
+    
+    /* sau đó bắt đầu hiện lời chúc */
+    
+    setTimeout(()=>{
+    
+    document.getElementById("result").style.display="block"
+    
+    typeText()
+    
+    fireworks()
+    
+    },900)
+    
+    },3000)
+    
+    }
+
+/* SLIDESHOW */
+
+const images=["1.jpg","14.jpg","2.jpg","4.jpg","5.jpg","7.jpg","8.jpg","11.jpg","10.jpg",
+"12.jpg","18.jpg","17.jpg","9.jpg","15.jpg","16.jpg","13.jpg","3.jpg"]
+
+function startSlideshow(){
+
+    index=0
+    
+    document.getElementById("slide").src=images[0]
+    
+    setInterval(()=>{
+    
+    index=(index+1)%images.length
+    
+    document.getElementById("slide").src=images[index]
+    
+    },2500)
+    
+    }
+
+/* HEARTS AROUND IMAGE */
+
+setInterval(()=>{
+
+const img=document.getElementById("slide")
+
+if(!img)return
+
+const rect=img.getBoundingClientRect()
+
+const heart=document.createElement("div")
+
+heart.innerHTML="💗"
+
+heart.style.position="fixed"
+heart.style.left=rect.left+Math.random()*rect.width+"px"
+heart.style.top=rect.top+Math.random()*rect.height+"px"
+
+document.body.appendChild(heart)
+
+heart.animate([
+{transform:"translate(0,0)",opacity:1},
+{transform:"translate(0,-60px)",opacity:0}
+],{duration:2000})
+
+setTimeout(()=>heart.remove(),2000)
+
+},600)
+
+/* SHOW FINAL TEXT AT MUSIC TIME */
+const music=document.getElementById("music")
+
+let showed=false
+
+music.addEventListener("timeupdate",()=>{
+
+if(music.currentTime>95 && !showed){
+
+showed=true
+
+/* ẩn ảnh */
+
+document.querySelector(".slideshow").style.display="none"
+
+/* hiện chữ */
+
+document.getElementById("finalText").style.display="block"
+
+/* pháo hoa */
+
+fireworks()
+
+/* dừng nhạc */
+
+setTimeout(()=>{
+
+music.pause()
+
+},2000)
+
+}
+
+})
+
+/* FLOAT HEARTS */
+
+setInterval(()=>{
+
+    const heart=document.createElement("div")
+    
+    heart.innerHTML="💗"
+    
+    heart.style.position="fixed"
+    heart.style.fontSize="12px"
+    heart.style.pointerEvents="none"
+    
+    heart.style.left=Math.random()*window.innerWidth+"px"
+    heart.style.top=Math.random()*window.innerHeight+"px"
+    
+    document.body.appendChild(heart)
+    
+    const x=(Math.random()-0.5)*600
+    const y=(Math.random()-0.5)*600
+    
+    heart.animate([
+    {transform:"translate(0,0) rotate(0deg)",opacity:1},
+    {transform:`translate(${x}px,${y}px) rotate(360deg)`,opacity:0}
+    ],{
+    duration:4000,
+    easing:"linear"
+    })
+    
+    setTimeout(()=>heart.remove(),4000)
+    
+    },300)
+
+/* FIREWORK */
+
+function fireworks(){
+
+for(let i=0;i<80;i++){
+
+const heart=document.createElement("div")
+
+heart.innerHTML="💖"
+
+heart.style.position="fixed"
+heart.style.left="50%"
+heart.style.top="50%"
+
+document.body.appendChild(heart)
+
+const x=(Math.random()-0.5)*600
+const y=(Math.random()-0.5)*600
+
+heart.animate([
+{transform:"translate(0,0)",opacity:1},
+{transform:`translate(${x}px,${y}px)`,opacity:0}
+],{duration:2000})
+
+setTimeout(()=>heart.remove(),2000)
+
+}
+
+}
+
+/* STARS */
+
+const canvas=document.getElementById("stars")
+const ctx=canvas.getContext("2d")
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+let stars=[]
+
+for(let i=0;i<200;i++){
+stars.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2,
+speed:Math.random()*0.5
+})
+}
+
+function drawStars(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.fillStyle="#ff9bb3"
+
+stars.forEach(s=>{
+
+ctx.beginPath()
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2)
+ctx.fill()
+
+s.y+=s.speed
+
+if(s.y>canvas.height)s.y=0
+
+})
+
+requestAnimationFrame(drawStars)
+
+}
+
+drawStars()
+
+</script>
+
+</body>
+</html>
