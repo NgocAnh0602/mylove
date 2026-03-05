@@ -162,12 +162,22 @@ document.getElementById("question").style.display="block"
 
 /* NO BUTTON */
 
+let runCount = 0
+
 const noBtn=document.getElementById("no")
 
 noBtn.addEventListener("mouseover",()=>{
+
+if(runCount < 5){
+
 noBtn.style.position="fixed"
 noBtn.style.left=Math.random()*window.innerWidth+"px"
 noBtn.style.top=Math.random()*window.innerHeight+"px"
+
+runCount++
+
+}
+
 })
 
 noBtn.addEventListener("click",()=>{
